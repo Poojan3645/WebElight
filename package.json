@@ -1,0 +1,43 @@
+{
+  "name": "webelight",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodemon index.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Poojan3645/WebElight.git"
+  },
+  "author": "Poojan Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Poojan3645/WebElight/issues"
+  },
+  "homepage": "https://github.com/Poojan3645/WebElight#readme",
+  "dependencies": {
+    "16": "^0.0.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "client": "^0.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "http-errors": "^2.0.0",
+    "joi": "^17.10.0",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.5",
+    "morgan": "^1.10.0",
+    "node-mailer": "^0.1.1",
+    "nodemon": "^3.0.1",
+    "react-router-dom": "^6.15.0",
+    "server": "^1.0.38",
+    "swagger": "^0.7.5",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "yaml": "^2.3.2",
+    "yamljs": "^0.3.0"
+  }
+}

@@ -1,0 +1,552 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: WebElight Task
+  description: e-commerce based application
+host: localost:8000
+basePath: /
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  JWT:
+    type: apiKey
+    in: header
+    name: Authorization
+  
+paths:
+  /users:
+    post:
+      tags:
+        - User
+      summary: Register user into system
+      parameters:
+        - name: createUser
+          in: body
+          description: Create User
+          schema: 
+            $ref: "#/definitions/UserCreateBody"
+      responses:
+        '201':
+          description: created user
+          schema:
+            $ref: "#/definitions/UserCreateBody"
+        '400':
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/400Response"
+        '409':
+          description: "Conflict"
+          schema:
+            $ref: "#/definitions/404Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+
+    get:
+      tags:
+        - User
+      summary: Successfully list users
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+      security:
+        - JWT: []
+
+  /users/{userId}:
+    patch:
+      tags:
+        - User
+      summary: User updated into system
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: string
+        - name: updateUser
+          in: body
+          description: Update User
+          schema: 
+            $ref: "#/definitions/UserUpdateBody"
+      responses:
+        '204':
+          description: User Successfully Updated
+        '409':
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/400Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+              $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+    get:
+      tags:
+        - User
+      summary: Get User By ID
+      parameters:
+        - name: userId
+          in: path
+          type: string
+          format: uuid
+          required: true
+          description: Update user
+      responses:
+        '200':
+          description: Successfully list user
+          schema: 
+            $ref: "#/definitions/User"
+        '404':
+          description: "User not found"
+          schema:
+            $ref: "#/definitions/404Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+    delete:
+      tags:
+        - User
+      summary: Delete User with given ID
+      parameters:
+        - name: userId
+          in: path
+          type: string
+          format: uuid
+          required: true
+          description: Update user
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: "#/definitions/User"
+        '404':
+          description: "User not found"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+    
+paths:
+  /products:
+    post:
+      tags:
+        - Product
+      summary: To Create Product 
+      parameters:
+        - name: createProduct
+          in: body
+          description: Create Product
+          schema: 
+            $ref: "#/definitions/ProductCreateBody"
+      responses:
+        '201':
+          description: created product
+          schema:
+            $ref: "#/definitions/ProductCreateBody"
+        '400':
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/400Response"
+        '409':
+          description: "Conflict"
+          schema:
+            $ref: "#/definitions/404Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+
+    get:
+      tags:
+        - Product
+      summary: Successfully list of product
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Product"
+      security:
+        - JWT: []
+
+    delete:
+      tags:
+        - Product
+      summary: Delete Product with given ID
+      parameters:
+        - name: productId
+          in: path
+          type: string
+          format: uuid
+          required: true
+          description: Update product
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: "#/definitions/Product"
+        '404':
+          description: "Product not found"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+  /products/{productId}:
+    patch:
+      tags:
+        - User
+      summary: User updated into system
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          type: string
+        - name: updateUser
+          in: body
+          description: Update User
+          schema: 
+            $ref: "#/definitions/UserUpdateBody"
+      responses:
+        '204':
+          description: User Successfully Updated
+        '409':
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/400Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+              $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+    get:
+      tags:
+        - Product
+      summary: Get Product By ID
+      parameters:
+        - name: productId
+          in: path
+          type: string
+          format: uuid
+          required: true
+          description: Update product
+      responses:
+        '200':
+          description: Successfully list product
+          schema: 
+            $ref: "#/definitions/Product"
+        '404':
+          description: "Product not found"
+          schema:
+            $ref: "#/definitions/404Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+  
+paths:
+  /categories:
+    post:
+      tags:
+        - Category
+      summary: To Create Category 
+      parameters:
+        - name: createCategory
+          in: body
+          description: Create Category
+          schema: 
+            $ref: "#/definitions/CategoryCreateBody"
+      responses:
+        '201':
+          description: created category
+          schema:
+            $ref: "#/definitions/CategoryCreateBody"
+        '400':
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/400Response"
+        '409':
+          description: "Conflict"
+          schema:
+            $ref: "#/definitions/404Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+
+    get:
+      tags:
+        - Category
+      summary: Successfully list of category
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Category"
+      security:
+        - JWT: []
+
+    delete:
+      tags:
+        - Category
+      summary: Delete Category with given ID
+      parameters:
+        - name: categoryId
+          in: path
+          type: string
+          format: uuid
+          required: true
+          description: Update category
+      responses:
+        '200':
+          description: ok
+          schema:
+            $ref: "#/definitions/Category"
+        '404':
+          description: "Category not found"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+  /categories/{categoryId}:
+    patch:
+      tags:
+        - Category
+      summary: Category updated into system
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          type: string
+        - name: updateCategory
+          in: body
+          description: Update Category
+          schema: 
+            $ref: "#/definitions/CategoryUpdateBody"
+      responses:
+        '204':
+          description: Category Successfully Updated
+        '409':
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/400Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+              $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+    get:
+      tags:
+        - Category
+      summary: Get Category By ID
+      parameters:
+        - name: categoryId
+          in: path
+          type: string
+          format: uuid
+          required: true
+          description: Update category
+      responses:
+        '200':
+          description: Successfully list category
+          schema: 
+            $ref: "#/definitions/Category"
+        '404':
+          description: "Category not found"
+          schema:
+            $ref: "#/definitions/404Response"
+        '500':
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+
+  /auth/token:
+     post:
+      tags:
+        - Authentication
+      summary: Login user
+      parameters:
+        - name: Login
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/PostOauthTokenBody"
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: "#/definitions/OauthToken"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/500Response"
+      security:
+        - JWT: []
+
+definitions:
+  User:
+    required:
+      - _id
+      - firstName
+      - lastName
+      - email
+      - password
+      - createdAt
+      - updatedAt
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+
+  PostOauthTokenBody:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+
+  OauthToken:
+    required: 
+      - token
+    properties:
+      token:
+        type: string
+
+  UserCreateBody:
+    required:
+      - firstName
+      - lastName
+      - email
+      - password
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+
+  UserUpdateBody:
+    required:
+      - firstName
+      - lastName
+      - email
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+
+  200Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  201Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  204Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  400Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  401Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  404Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  409Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+
+  500Response:
+    type: object
+    required:
+      - message
+    properties:
+      message:
+        type: string
+        
