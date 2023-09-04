@@ -141,7 +141,6 @@ paths:
       security:
         - JWT: []
     
-paths:
   /products:
     post:
       tags:
@@ -211,21 +210,21 @@ paths:
   /products/{productId}:
     patch:
       tags:
-        - User
+        - Product
       summary: User updated into system
       parameters:
-        - name: userId
+        - name: productId
           in: path
           required: true
           type: string
-        - name: updateUser
+        - name: updateProduct
           in: body
-          description: Update User
+          description: Update Product
           schema: 
-            $ref: "#/definitions/UserUpdateBody"
+            $ref: "#/definitions/ProductUpdateBody"
       responses:
         '204':
-          description: User Successfully Updated
+          description: Product Successfully Updated
         '409':
           description: "Bad Request"
           schema:
@@ -264,7 +263,6 @@ paths:
       security:
         - JWT: []
   
-paths:
   /categories:
     post:
       tags:
@@ -440,6 +438,53 @@ definitions:
         type: string
         format: date-time
 
+  Category:
+    required: 
+      - _id
+      - categoryName
+      - modelName
+      - Range
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      categoryName:
+        type: string
+      modelName:
+        type: string
+      Range:
+        type: string      
+
+  CategoryCreateBody:
+    required: 
+      - _id
+      - categoryName
+      - modelName
+      - Range
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      categoryName:
+        type: string
+      modelName:
+        type: string
+      Range:
+        type: string
+    
+  CategoryUpdateBody:
+    required:
+      - categoryName
+      - modelName
+      - Range
+    properties:
+      categoryName:
+        type: string
+      modelName:
+        type: string
+      Range:
+        type: string
+
   PostOauthTokenBody:
     required:
       - email
@@ -455,6 +500,62 @@ definitions:
       - token
     properties:
       token:
+        type: string
+
+  Product:
+    required: 
+      - _id
+      - Name
+      - Price
+      - categoryId
+      - productColor
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      Name:
+        type: string
+      Price:
+        type: number
+      categoryId:
+        type: string
+      productColor:
+        type: string      
+
+  ProductCreateBody:
+    required: 
+      - _id
+      - Name
+      - Price
+      - categoryId
+      - productColor
+    properties:
+      _id:
+        type: string
+        uniqueItems: true
+      Name:
+        type: string
+      Price:
+        type: number
+      categoryId:
+        type: string
+      productColor:
+        type: string
+    
+  ProductUpdateBody:
+    required:
+      - Name
+      - Price
+      - categoryId
+      - productColor
+    properties:
+      Name:
+        type: string
+      Price:
+        type: number
+      categoryId:
+        type: string
+      productColor:
         type: string
 
   UserCreateBody:
